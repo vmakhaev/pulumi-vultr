@@ -99,6 +99,12 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:    "https://pulumi.io",
 		Repository:  "https://github.com/pulumi/pulumi-vultr",
 		Config:      map[string]*tfbridge.SchemaInfo{
+			// "api_key": {
+			// 	Type: makeType("api_key", "APIKey"),
+			// 	Default: &tfbridge.DefaultInfo{
+			// 		EnvVars: []string{"VULTR_API_KEY"},
+			// 	},
+			// },
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
 			// "region": {
@@ -109,7 +115,14 @@ func Provider() tfbridge.ProviderInfo {
 			// },
 		},
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
+		Resources: map[string]*tfbridge.ResourceInfo{
+			"vultr_bare_metal_server": {Tok: makeResource(mainMod, "BareMetalServer")},
+			"vultr_reserved_ip":       {Tok: makeResource(mainMod, "ReservedIP")},
+			"vultr_ssh_key":           {Tok: makeResource(mainMod, "SshKey")},
+			"vultr_server":            {Tok: makeResource(mainMod, "Server")},
+			"vultr_startup_script":    {Tok: makeResource(mainMod, "StartupScript")},
+			"vultr_user":              {Tok: makeResource(mainMod, "User")},
+
 			// Map each resource in the Terraform provider to a Pulumi type. Two examples
 			// are below - the single line form is the common case. The multi-line form is
 			// needed only if you wish to override types or other default options.
@@ -124,6 +137,13 @@ func Provider() tfbridge.ProviderInfo {
 			// },
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
+			"vultr_bare_metal_server": {Tok: makeDataSource(mainMod, "getBareMetalServer")},
+			"vultr_reserved_ip":       {Tok: makeDataSource(mainMod, "getReservedIP")},
+			"vultr_ssh_key":           {Tok: makeDataSource(mainMod, "getSshKey")},
+			"vultr_server":            {Tok: makeDataSource(mainMod, "getServer")},
+			"vultr_startup_script":    {Tok: makeDataSource(mainMod, "getStartupScript")},
+			"vultr_user":              {Tok: makeDataSource(mainMod, "getUser")},
+
 			// Map each resource in the Terraform provider to a Pulumi function. An example
 			// is below.
 			// "aws_ami": {Tok: makeDataSource(mainMod, "getAmi")},

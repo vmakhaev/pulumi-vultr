@@ -1,0 +1,25 @@
+{
+    "name": "pulumi-vultr",
+    "version": "1.0.0",
+    "description": "A Pulumi package for creating and managing vultr cloud resources.",
+    "keywords": [
+        "pulumi",
+        "vultr"
+    ],
+    "homepage": "https://pulumi.io",
+    "repository": "https://github.com/vmakhaev/pulumi-vultr",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@pulumi/pulumi": "^2.0.0"
+    },
+    "devDependencies": {
+        "@types/mime": "^2.0.0",
+        "@types/node": "^8.0.25"
+    },
+    "pulumi": {
+        "resource": true
+    }
+}
